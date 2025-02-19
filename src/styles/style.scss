@@ -1,0 +1,22 @@
+@use 'reset.scss';
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&family=Lexend+Deca:wght@100..900&display=swap');
+
+:root {
+  --accent-color: #f17900;
+  --accent-hover-color: #fbd7b24d;
+  --accent-light-color: #e0a449;
+  --background-light-color: #f9f9f9;
+  --text-base-color: #393939;
+  --background-base-color: #fafafa;
+}
+
+html {
+  background: var(--background-base-color);
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--text-base-color);
+  background: inherit;
+}
