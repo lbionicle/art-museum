@@ -1,28 +1,22 @@
 import search from '@/assets/icons/search.svg';
 
 import './search.scss';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import useDebounce from '@/hooks/useDebounce';
-import { searchSchema } from '@/api/schema';
+import { useQuery } from '@tanstack/react-query';
+import { searchArtwork } from '@/api/route';
 
 export default function SearchPanel() {
   const [searchTerm, setSearchTerm] = useState('');
-
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
-  useEffect(() => {
-    if (!debouncedSearchTerm) return;
+  const { data: results } = useQuery({
+    queryKey: ['searchArtwork', debouncedSearchTerm],
+    queryFn: () => searchArtwork(debouncedSearchTerm),
+    enabled: debouncedSearchTerm.trim().length > 0,
+  });
 
-    const result = searchSchema.safeParse(debouncedSearchTerm);
-    if (!result.success) {
-      console.warn('Validation error:', result.error.errors);
-      return;
-    }
-
-    const safeQuery = encodeURIComponent(result.data);
-
-    console.log(safeQuery);
-  }, [debouncedSearchTerm]);
+  console.log(results);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
