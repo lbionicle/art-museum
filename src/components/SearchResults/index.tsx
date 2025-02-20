@@ -3,6 +3,8 @@ import Table from '../Table';
 import { useSearchParams } from 'react-router-dom';
 import { searchArtwork } from '@/api/route';
 import { SmallCard } from '../Card';
+import { ReactNode } from 'react';
+import { SmallCardSkeleton } from '../Skeletons';
 
 export default function SearchResults() {
   // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
@@ -15,18 +17,21 @@ export default function SearchResults() {
     enabled: query.trim().length > 0,
   });
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error...</div>;
-
   const artworks = data ?? [];
 
-  return (
-    <div className="container">
-      <Table variant="small">
-        {artworks.map((artwork) => (
-          <SmallCard key={artwork.id} {...artwork} />
-        ))}
-      </Table>
-    </div>
-  );
+  const renderTable = (content: ReactNode) => {
+    return (
+      <div className="container">
+        <Table variant="small">{content}</Table>
+      </div>
+    );
+  };
+
+  if (isLoading) {
+    const content = Array.from({ length: 6 }).map((_, i) => <SmallCardSkeleton key={i} />);
+    return renderTable(content);
+  }
+  if (error) return <div className="container title title--text">Something went wrong!</div>;
+
+  return renderTable(artworks.map((artwork) => <SmallCard key={artwork.id} {...artwork} />));
 }

@@ -3,6 +3,7 @@ import './gallery.scss';
 interface PaginationProps {
   currentPage: number;
   totalPages: number;
+  // eslint-disable-next-line no-unused-vars
   onPageChange: (page: number) => void;
 }
 
