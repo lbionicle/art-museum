@@ -28,7 +28,8 @@ const transformArtworkData = (IIIFUrl: string, artwork: z.infer<typeof dataSchem
     title,
     artist: artist_title,
     isPublic: is_public_domain,
-    date: `${date_start}-${date_end}`,
+    dateStart: date_start,
+    dateEnd: date_end,
     image: {
       src: image_id ? `${IIIFUrl}/${image_id}${IIIFParam}` : defaultImage,
       alt: thumbnail.alt_text ?? title,

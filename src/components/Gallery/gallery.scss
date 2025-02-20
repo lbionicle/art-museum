@@ -60,3 +60,48 @@
     }
   }
 }
+
+.sort-toggle-group {
+  display: flex;
+  align-items: center;
+  justify-self: flex-end;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  background: #fafafa;
+  border-radius: 8px;
+
+  .sort-label {
+    font-size: 0.9rem;
+    color: var(--text-base-color);
+    white-space: nowrap;
+  }
+
+  .sort-buttons {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .sort-button {
+    padding: 0.5rem 1rem;
+    border: 1px solid #e0e0e099;
+    border-radius: 6px;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+    color: var(--text-base-color);
+
+    &:hover {
+      border-color: var(--accent-light-color);
+      background-color: var(--accent-hover-color);
+    }
+
+    &.active {
+      background-color: var(--accent-color);
+      border-color: var(--accent-color);
+      color: white;
+      cursor: default;
+    }
+  }
+}

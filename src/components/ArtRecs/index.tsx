@@ -7,8 +7,8 @@ import { SmallCardSkeleton } from '../Skeletons';
 
 export default function ArtRecs() {
   const { data, isLoading, error } = useQuery({
-    queryKey: ['gallery', 1, 9],
-    queryFn: () => fetchPaginatedArtworks(1, 9),
+    queryKey: ['recommendation', 1337, 9],
+    queryFn: () => fetchPaginatedArtworks(1337, 9),
   });
 
   const artworks = data?.artworks ?? [];
@@ -29,7 +29,8 @@ export default function ArtRecs() {
   }
 
   if (error) return <div className="container title title--text">Something went wrong!</div>;
-  if (!artworks.length) return <div>No artworks found</div>;
+  if (!artworks.length)
+    return <div className="container title title--text not-found">No artworks found!</div>;
 
   return renderSection(artworks.map((artwork) => <SmallCard key={artwork.id} {...artwork} />));
 }
