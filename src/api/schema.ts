@@ -6,6 +6,16 @@ export const searchSchema = z
   .min(1, 'Minimum length 1 character')
   .max(100, 'Maximum length 100 characters');
 
+export const paginationSchema = z.object({
+  total: z.number(),
+  limit: z.number(),
+  offset: z.number(),
+  total_pages: z.number(),
+  current_page: z.number(),
+  prev_url: z.string().url().optional(),
+  next_url: z.string().url().optional(),
+});
+
 export const thumbnailSchema = z.object({
   lqip: z
     .string()
@@ -115,4 +125,10 @@ export const artworkApiResponseSchema = z.object({
       },
   ),
   config: configSchema.nullable().transform((val) => val ?? { iiif_url: '', website_url: '' }),
+});
+
+export const paginatedArtworkResponseSchema = z.object({
+  data: z.array(dataSchema),
+  config: configSchema,
+  pagination: paginationSchema.optional(),
 });

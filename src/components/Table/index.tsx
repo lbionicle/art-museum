@@ -1,29 +1,11 @@
-import { CardProps } from '../Card/SmallCard';
-import SmallCard from '../Card/SmallCard';
-import LargeCard from '../Card/LargeCard';
+import { ReactNode } from 'react';
 import './table.scss';
 
 interface TableProps {
-  cards: CardProps[];
-  title?: string;
-  subtitle?: string;
   variant: 'small' | 'large';
+  children: ReactNode;
 }
 
-export default function Table({ cards, title, subtitle, variant }: TableProps) {
-  const CardComponent = variant === 'small' ? SmallCard : LargeCard;
-
-  return (
-    <section className="section--base">
-      <div className="container">
-        {subtitle && <h6 className="subtitle">{subtitle}</h6>}
-        {title && <h2 className="title">{title}</h2>}
-        <div className={`table table--${variant}`}>
-          {cards.map((card) => (
-            <CardComponent key={card.id} {...card} />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+export default function Table({ children, variant }: TableProps) {
+  return <div className={`table table--${variant}`}>{children}</div>;
 }

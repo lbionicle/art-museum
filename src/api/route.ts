@@ -1,7 +1,12 @@
 import axios from 'axios';
 import { z } from 'zod';
 
-import { artworkApiResponseSchema, dataSchema, searchSchema } from './schema';
+import {
+  artworkApiResponseSchema,
+  dataSchema,
+  paginatedArtworkResponseSchema,
+  searchSchema,
+} from './schema';
 import { _API_URL, IIIFParam } from '@/constants';
 import defaultImage from '@/assets/images/default-art.svg';
 
@@ -48,7 +53,7 @@ export const getArtworkDetail = async (id: number) => {
   return transformArtworkData(parsedResponse.data.config.iiif_url, parsedResponse.data.data);
 };
 
-export const searchArtwork = async (query: string, size: number = 6) => {
+export const searchArtwork = async (query: string, limit: number = 6) => {
   const result = searchSchema.safeParse(query);
   if (!result.success) {
     console.warn('Validation error:', result.error.errors);
@@ -58,7 +63,7 @@ export const searchArtwork = async (query: string, size: number = 6) => {
   const safeQuery = encodeURIComponent(result.data);
 
   const res = await axios.get(`${_API_URL}/artworks/search`, {
-    params: { q: safeQuery, size: size },
+    params: { q: safeQuery, size: limit },
   });
 
   const artworks = res.data.data;
@@ -68,4 +73,25 @@ export const searchArtwork = async (query: string, size: number = 6) => {
   );
 
   return detailedArtworks;
+};
+
+export const fetchPaginatedArtworks = async (page: number = 1, limit: number = 6) => {
+  const res = await axios.get(`${_API_URL}/artworks`, { params: { page, limit } });
+
+  const parsedResponse = paginatedArtworkResponseSchema.safeParse(res.data);
+
+  if (!parsedResponse.success) {
+    console.warn('Validation error:', parsedResponse.error.errors);
+    return;
+  }
+
+  const { config, data: artworks } = parsedResponse.data;
+  const iiif_url = config.iiif_url;
+
+  const transformedArtworks = artworks.map((artwork) => transformArtworkData(iiif_url, artwork));
+
+  return {
+    artworks: transformedArtworks,
+    pagination: parsedResponse.data.pagination,
+  };
 };
