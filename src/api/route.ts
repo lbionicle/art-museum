@@ -75,7 +75,7 @@ export const searchArtwork = async (query: string, limit: number = 6) => {
   return detailedArtworks;
 };
 
-export const fetchPaginatedArtworks = async (page: number = 1, limit: number = 6) => {
+export const fetchPaginatedArtworks = async (page: number = 1, limit: number = 4) => {
   const res = await axios.get(`${_API_URL}/artworks`, { params: { page, limit } });
 
   const parsedResponse = paginatedArtworkResponseSchema.safeParse(res.data);

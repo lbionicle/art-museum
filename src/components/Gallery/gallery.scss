@@ -1,0 +1,62 @@
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.625rem;
+  text-align: right;
+  font-family: 'Lexend Deca', sans-serif;
+  margin: 1.5rem 0 0 0;
+
+  &__item {
+    padding: 0.375rem 0.625rem;
+    font-size: 1.125rem;
+    border-radius: 0.25rem;
+    line-height: 1;
+    background-color: transparent;
+    aspect-ratio: 1 / 1;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: var(--accent-hover-color);
+    }
+
+    &--active {
+      color: #fff;
+      font-weight: 600;
+      background-color: var(--accent-color);
+    }
+  }
+
+  &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.25rem;
+    background-color: transparent;
+    padding: 0;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: var(--accent-hover-color);
+    }
+  }
+
+  &__arrow {
+    display: block;
+    width: 0.625rem;
+    height: 0.625rem;
+    border-top: 0.125rem solid var(--text-base-color);
+    border-right: 0.125rem solid var(--text-base-color);
+    transform-origin: center;
+
+    &--prev {
+      transform: rotate(-135deg) translate(-15%, 15%);
+    }
+
+    &--next {
+      transform: rotate(45deg) translate(-15%, 15%);
+    }
+  }
+}
