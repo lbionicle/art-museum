@@ -2,13 +2,18 @@ import { Link } from 'react-router';
 
 import useModal from '@/hooks/useModal';
 import home from '@/assets/icons/home.svg';
-import favourites from '@/assets/icons/yellow-bookmark.svg';
+import favorites from '@/assets/icons/yellow-bookmark.svg';
 
 import './header.scss';
 
 interface BurgerMenuProps {
   onClose: () => void;
 }
+
+const navItems = [
+  { to: '/', icon: home, label: 'Home', className: 'header__nav-item--home' },
+  { to: '/user/favorites', icon: favorites, label: 'Your favorites' },
+];
 
 export default function BurgerMenu({ onClose }: BurgerMenuProps) {
   useModal({ onClose: onClose });
@@ -21,14 +26,18 @@ export default function BurgerMenu({ onClose }: BurgerMenuProps) {
           <span className="burger-menu__close--cross"></span>
         </button>
         <nav className="burger-menu__nav">
-          <Link to="/" className="burger-menu__nav-item" onClick={onClose}>
-            <img src={home} alt="Home" />
-            Home
-          </Link>
-          <Link to="/user/favourites" className="burger-menu__nav-item" onClick={onClose}>
-            <img src={favourites} alt="Favourites" />
-            Your favorites
-          </Link>
+          {navItems.map(({ to, icon, label, className }) => {
+            if (to === '/' && location.pathname === '/') {
+              return null;
+            }
+
+            return (
+              <Link key={to} to={to} className={`burger-menu__nav-item ${className || ''}`.trim()}>
+                <img src={icon} alt="" aria-hidden="true" />
+                {label}
+              </Link>
+            );
+          })}
         </nav>
       </div>
     </div>
