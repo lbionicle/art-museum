@@ -1,6 +1,8 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+import { MainPage } from '@/pages';
+
 export default function App() {
   const client = new QueryClient();
 
@@ -8,7 +10,7 @@ export default function App() {
     <QueryClientProvider client={client}>
       <Router>
         <Routes>
-          <Route path="/" element />
+          <Route path="/" element={<MainPage />} />
           <Route path="/artworks/:id" element />
           <Route path="/user/favorites" element />
         </Routes>
