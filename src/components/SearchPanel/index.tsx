@@ -30,17 +30,19 @@ export default function SearchPanel() {
   };
 
   return (
-    <div className="container">
-      <form onSubmit={onSubmit} className="search-panel">
-        <input
-          className="search-panel__input"
-          type="text"
-          placeholder="Search Art, Artist, Work..."
-          value={searchTerm}
-          onChange={handleChange}
-        />
-        <img className="search-panel__icon" src={search} alt="Search" />
-      </form>
-    </div>
+    <>
+      <div className="container">
+        <form onSubmit={onSubmit} className="search-panel">
+          <input
+            className="search-panel__input"
+            type="text"
+            placeholder="Search Art, Artist, Work..."
+            value={searchTerm}
+            onChange={handleChange}
+          />
+          <img className="search-panel__icon" src={search} alt="Search" />
+        </form>
+      </div>
+    </>
   );
 }
