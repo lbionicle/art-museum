@@ -10,7 +10,7 @@ export default function LargeCard({ id, image, title, artist, isPublic }: CardPr
         <div className="card__info">
           <h2 className="card__title">{title}</h2>
           <p className="card__artist">{artist}</p>
-          <strong className="card__status">{isPublic ? 'Public' : 'Private'}</strong>
+          <span className="card__status">{isPublic ? 'Public' : 'Private'}</span>
         </div>
         <FavButton id={id} />
       </div>

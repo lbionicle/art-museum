@@ -1,12 +1,13 @@
-import { useQuery } from '@tanstack/react-query';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import Table from '../Table';
 import { LargeCard } from '../Card';
 import { fetchPaginatedArtworks } from '@/api/route';
 
 export default function Gallery() {
   const { data, isLoading, error } = useQuery({
-    queryKey: ['gallery', 1],
-    queryFn: () => fetchPaginatedArtworks(1),
+    queryKey: ['gallery', 1, 4],
+    queryFn: () => fetchPaginatedArtworks(1, 4),
+    placeholderData: keepPreviousData,
   });
 
   if (isLoading) return <div>Loading...</div>;
