@@ -1,22 +1,25 @@
+import React, { useEffect, useState } from 'react';
+import useDebounce from '@/hooks/useDebounce';
+import { useSearchParams } from 'react-router-dom';
+
 import search from '@/assets/icons/search.svg';
 
 import './search.scss';
-import React, { useState } from 'react';
-import useDebounce from '@/hooks/useDebounce';
-import { useQuery } from '@tanstack/react-query';
-import { searchArtwork } from '@/api/route';
 
 export default function SearchPanel() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
+  const [_, setSearchParams] = useSearchParams();
   const [searchTerm, setSearchTerm] = useState('');
+
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
-  const { data: results } = useQuery({
-    queryKey: ['searchArtwork', debouncedSearchTerm],
-    queryFn: () => searchArtwork(debouncedSearchTerm),
-    enabled: debouncedSearchTerm.trim().length > 0,
-  });
-
-  console.log(results);
+  useEffect(() => {
+    if (debouncedSearchTerm) {
+      setSearchParams({ search: debouncedSearchTerm });
+    } else {
+      setSearchParams({});
+    }
+  }, [debouncedSearchTerm, setSearchParams]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
