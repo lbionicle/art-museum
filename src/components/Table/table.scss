@@ -3,6 +3,11 @@
   height: max-content;
 }
 
+img {
+  color: var(--text-base-color);
+  overflow: hidden;
+}
+
 .table--large {
   gap: calc(5% + 65px) 5%;
   @media (min-width: 320px) {
