@@ -4,12 +4,16 @@ import lightLogo from '@/assets/logos/light-museum-logo.svg';
 import home from '@/assets/icons/home.svg';
 import favorites from '@/assets/icons/yellow-bookmark.svg';
 
+import BurgerMenu from './BurgerMenu';
+import { useState } from 'react';
+
 const navItems = [
   { to: '/', icon: home, label: 'Home', className: 'header__nav-item--home' },
   { to: '/user/favorites', icon: favorites, label: 'Your favorites' },
 ];
 
 export default function Header() {
+  const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
   return (
@@ -35,11 +39,16 @@ export default function Header() {
             })}
           </nav>
 
-          <button className="header__burger" aria-label="Toggle menu">
+          <button
+            onClick={() => setIsOpen(true)}
+            className="header__burger"
+            aria-label="Toggle menu"
+          >
             <span className="header__burger-icon" />
           </button>
         </div>
       </div>
+      {isOpen && <BurgerMenu onClose={() => setIsOpen(false)} />}
     </header>
   );
 }
