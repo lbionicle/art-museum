@@ -27,3 +27,35 @@ body {
   padding: 0 1rem;
   margin: 0 auto;
 }
+
+.title {
+  text-align: center;
+  font-family: 'Lexend Deca', sans-serif;
+  line-height: normal;
+  color: var(--text-base-color);
+
+  &--main {
+    font-size: 4rem;
+    font-weight: bold;
+    text-transform: capitalize;
+
+    .img__bookmark {
+      margin: 0.875rem 0.5rem 0 0;
+      width: 3.75rem;
+    }
+
+    span {
+      color: var(--accent-color);
+      text-transform: capitalize;
+    }
+  }
+
+  &--text {
+    font-size: 2rem;
+  }
+
+  &--subtitle {
+    color: var(--accent-light-color);
+    font-size: 1rem;
+  }
+}
