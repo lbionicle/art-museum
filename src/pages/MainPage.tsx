@@ -1,4 +1,4 @@
-import MainPromo from '@/components/App/Promo';
+import MainPromo from '@/components/Promo';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 

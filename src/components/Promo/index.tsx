@@ -1,3 +1,4 @@
+import SearchPanel from '../SearchPanel';
 import './promo.scss';
 
 export default function MainPromo() {
@@ -9,6 +10,7 @@ export default function MainPromo() {
             let's find some <span>art</span>
             <br></br>here!
           </h1>
+          <SearchPanel />
         </div>
       </div>
     </section>
