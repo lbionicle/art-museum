@@ -5,6 +5,7 @@ import { getArtworkDetail, isAxiosError } from '@/api/route';
 import stripHTML from '@/utils/stripHtml';
 import { FavButton } from '../Card';
 import { ArtDetailsSkeleton } from '../Skeletons';
+import useModal from '@/hooks/useModal';
 
 import defaultImage from '@/assets/images/default-art.svg';
 
@@ -15,6 +16,8 @@ export default function ArtDetails() {
   const navigate = useNavigate();
   const artworkId = Number(id);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useModal({ onClose: () => setIsModalOpen(false) });
 
   useEffect(() => {
     if (!id || isNaN(artworkId)) {
