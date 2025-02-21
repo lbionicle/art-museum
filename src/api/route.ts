@@ -28,12 +28,14 @@ const transformArtworkData = (IIIFUrl: string, artwork: z.infer<typeof dataSchem
     date_start,
     artist_display,
     on_loan_display,
+    date_display,
   } = artwork;
   return {
     id,
     title,
     artist: artist_title,
     isPublic: is_public_domain,
+    dateDisplay: date_display,
     dateStart: date_start,
     dateEnd: date_end,
     image: {

@@ -49,7 +49,7 @@ export default function ArtDetails() {
             <div className="art-details__header">
               <h1 className="art-details__title">{data.title}</h1>
               <div className="art-details__artist">{data.artist}</div>
-              <div className="art-details__year">{data.dateStart}</div>
+              <div className="art-details__year">{data.dateDisplay}</div>
             </div>
             <div className="art-details__overview">
               <h2 className="art-details__overview-title">Overview</h2>
