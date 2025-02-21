@@ -1,11 +1,12 @@
 import { ReactNode } from 'react';
 import { useQueries, UseQueryOptions } from '@tanstack/react-query';
 import { getArtworkDetail } from '@/api/route';
-import favorites from '@/assets/icons/orange-bookmark.svg';
-
+import { FAVORITE_PAGE_LIMIT } from '@/constants';
 import { SmallCardSkeleton } from '../Skeletons';
 import { SmallCard } from '../Card';
 import Table from '../Table';
+
+import favorites from '@/assets/icons/orange-bookmark.svg';
 
 import './favorite.scss';
 
@@ -49,7 +50,9 @@ export default function ArtFav() {
 
   const isLoading = artworkQueries.some((query) => query.isLoading);
   if (isLoading) {
-    const content = Array.from({ length: 6 }).map((_, i) => <SmallCardSkeleton key={i} />);
+    const content = Array.from({ length: FAVORITE_PAGE_LIMIT }).map((_, i) => (
+      <SmallCardSkeleton key={i} />
+    ));
     return renderSection(content);
   }
 

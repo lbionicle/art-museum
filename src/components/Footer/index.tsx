@@ -1,8 +1,9 @@
+import { Link } from 'react-router-dom';
+
 import darkLogo from '@/assets/logos/dark-museum-logo.svg';
 import modsen from '@/assets/logos/modsen.svg';
 
 import './footer.scss';
-import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (

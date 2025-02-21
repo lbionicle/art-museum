@@ -5,7 +5,9 @@ import { LargeCard } from '../Card';
 import { fetchPaginatedArtworks } from '@/api/route';
 import Pagination from './Pagination';
 import { LargeCardSkeleton } from '../Skeletons';
-import SortSelect, { SortConfig } from './SortSelect';
+import { MAIN_PAGE_PAGINATION_LIMIT } from '@/constants';
+import { SortConfig } from '@/types';
+import SortSelect from './SortSelect';
 
 export default function Gallery() {
   const [page, setPage] = useState(1);
@@ -61,7 +63,9 @@ export default function Gallery() {
   };
 
   if (isLoading) {
-    const content = Array.from({ length: 9 }).map((_, i) => <LargeCardSkeleton key={i} />);
+    const content = Array.from({ length: MAIN_PAGE_PAGINATION_LIMIT }).map((_, i) => (
+      <LargeCardSkeleton key={i} />
+    ));
     return renderSection(content);
   }
 

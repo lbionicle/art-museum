@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { CardProps } from './SmallCard';
 import FavButton from './FavButton';
+import { CardProps } from '@/types';
 
 import defaultImage from '@/assets/images/default-art.svg';
 
