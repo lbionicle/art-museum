@@ -5,7 +5,7 @@ import reactRefresh from 'eslint-plugin-react-refresh';
 import tseslint from 'typescript-eslint';
 import prettier from 'eslint-config-prettier';
 import eslintPluginPrettier from 'eslint-plugin-prettier';
-
+import eslintPluginJest from 'eslint-plugin-jest';
 export default [
   js.configs.recommended,
   ...tseslint.configs.recommended,
@@ -36,8 +36,13 @@ export default [
 
   {
     files: ['**/*.test.{ts,tsx}'],
-    env: {
-      jest: true,
+    languageOptions: {
+      globals: {
+        ...globals.jest,
+      },
+    },
+    plugins: {
+      jest: eslintPluginJest,
     },
     rules: {
       'testing-library/no-dom-import': 'off',
