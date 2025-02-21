@@ -1,0 +1,46 @@
+.table {
+  display: grid;
+  height: max-content;
+  margin: 2.25rem 0 0 0;
+
+  &--large {
+    @media (min-width: 320px) {
+      grid-template-columns: repeat(1, 100%);
+      gap: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, calc(50% - 2rem));
+      gap: 4rem;
+    }
+
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(3, calc(33.33% - 2.7rem));
+      gap: 4rem;
+      > :nth-child(n + 4) {
+        display: none;
+      }
+    }
+  }
+
+  &--small {
+    gap: 1rem;
+
+    @media (min-width: 320px) {
+      grid-template-columns: repeat(1, 100%);
+    }
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, calc(50% - 0.5rem));
+    }
+
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+img {
+  color: var(--text-base-color);
+  overflow: hidden;
+}

@@ -1,0 +1,69 @@
+@use 'reset.scss';
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&family=Lexend+Deca:wght@100..900&display=swap');
+
+:root {
+  --accent-color: #f17900;
+  --accent-hover-color: #fbd7b24d;
+  --accent-light-color: #e0a449;
+  --background-light-color: #f9f9f9;
+  --text-base-color: #393939;
+  --background-base-color: #fafafa;
+}
+
+html {
+  background: var(--background-base-color);
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--text-base-color);
+  background: inherit;
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  padding: 0 1rem;
+  margin: 0 auto;
+}
+
+.title {
+  text-align: center;
+  font-family: 'Lexend Deca', sans-serif;
+  line-height: normal;
+  color: var(--text-base-color);
+
+  &--main {
+    font-size: 4rem;
+    font-weight: bold;
+    text-transform: capitalize;
+
+    .img__bookmark {
+      margin: 0.875rem 0.5rem 0 0;
+      width: 3.75rem;
+    }
+
+    span {
+      color: var(--accent-color);
+      text-transform: capitalize;
+    }
+  }
+
+  &--text {
+    font-size: 2rem;
+  }
+
+  &--subtitle {
+    color: var(--accent-light-color);
+    font-size: 1rem;
+  }
+}
+
+.section--base {
+  margin: 7.5rem 0 0 0;
+}
+
+.not-found {
+  margin: 2.5rem auto 0 auto;
+}

@@ -54,7 +54,7 @@ export default [
       prettier: eslintPluginPrettier,
     },
     rules: {
-      'prettier/prettier': 'error',
+      'prettier/prettier': ['error', { endOfLine: 'lf' }],
     },
   },
 ];

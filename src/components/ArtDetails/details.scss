@@ -1,0 +1,147 @@
+.art-details {
+  font-family: 'Lexend Deca', sans-serif;
+  &__wrapper {
+    display: grid;
+    grid-template-columns: minmax(0, 40%) minmax(0, 60%);
+    gap: 5rem;
+  }
+
+  &__image {
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+
+    &-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      cursor: zoom-in;
+    }
+  }
+
+  &__favorite {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+
+    .button--favorite {
+      outline: 1px solid var(--accent-light-color);
+
+      &:hover {
+        background-color: white;
+      }
+    }
+  }
+
+  &__info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  &__header,
+  &__overview {
+    width: 100%;
+  }
+
+  &__title {
+    font-size: 2rem;
+    line-height: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  &__artist {
+    font-size: 1.5rem;
+    margin: 2rem 0 0 0;
+    color: var(--accent-light-color);
+  }
+
+  &__year {
+    font-weight: 700;
+    margin: 1rem 0 0 0;
+  }
+
+  &__overview {
+    &-title {
+      font-size: 2rem;
+    }
+  }
+
+  &__description {
+    margin: 2rem 0 0 0;
+
+    &-item {
+      margin: 1rem 0 0 0;
+      line-height: normal;
+
+      &:first-child {
+        margin: 0;
+      }
+    }
+
+    &-label {
+      color: var(--accent-light-color);
+    }
+  }
+
+  &__status {
+    margin: 1rem 0 0 0;
+  }
+
+  @media (max-width: 1023px) {
+    &__wrapper {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  cursor: pointer;
+
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-image {
+    max-width: 90%;
+    max-height: 90%;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    margin: auto;
+  }
+
+  .modal-close {
+    position: absolute;
+    background-color: transparent;
+    padding: 1rem;
+    font-weight: 200;
+    top: 20px;
+    right: 20px;
+    border: none;
+    font-size: 3rem;
+    color: white;
+    cursor: pointer;
+  }
+}
