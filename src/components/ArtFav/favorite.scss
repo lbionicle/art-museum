@@ -1,0 +1,27 @@
+.art-fav {
+  &__highlight {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  &__icon {
+    position: relative;
+    width: 4rem;
+    height: 4rem;
+    vertical-align: middle;
+    top: 0.25rem;
+  }
+
+  &__text {
+    font-weight: 700;
+    color: var(--accent-color);
+  }
+
+  .title {
+    &--subtitle {
+      margin: 7.5rem 0 0 0;
+    }
+  }
+}
