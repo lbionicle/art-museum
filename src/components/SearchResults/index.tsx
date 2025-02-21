@@ -5,6 +5,7 @@ import { searchArtwork } from '@/api/route';
 import { SmallCard } from '../Card';
 import { ReactNode } from 'react';
 import { SmallCardSkeleton } from '../Skeletons';
+import { SEARCH_PAGE_LIMIT } from '@/constants';
 
 export default function SearchResults() {
   // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
@@ -28,7 +29,9 @@ export default function SearchResults() {
   };
 
   if (isLoading) {
-    const content = Array.from({ length: 6 }).map((_, i) => <SmallCardSkeleton key={i} />);
+    const content = Array.from({ length: SEARCH_PAGE_LIMIT }).map((_, i) => (
+      <SmallCardSkeleton key={i} />
+    ));
     return renderTable(content);
   }
   if (error) return <div className="container title title--text">Something went wrong!</div>;

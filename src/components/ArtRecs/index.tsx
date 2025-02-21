@@ -1,14 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
 import Table from '../Table';
 import { SmallCard } from '../Card';
-import { fetchPaginatedArtworks } from '@/api/route';
+import { fetchRandomPaginatedArtworks } from '@/api/route';
 import { ReactNode } from 'react';
 import { SmallCardSkeleton } from '../Skeletons';
+import { MAIN_PAGE_RECOMMENDAION_LIMIT } from '@/constants';
 
 export default function ArtRecs() {
   const { data, isLoading, error } = useQuery({
-    queryKey: ['recommendation', 1337, 9],
-    queryFn: () => fetchPaginatedArtworks(1337, 9),
+    queryKey: ['recommendation'],
+    queryFn: () => fetchRandomPaginatedArtworks(),
   });
 
   const artworks = data?.artworks ?? [];
@@ -24,7 +25,9 @@ export default function ArtRecs() {
   );
 
   if (isLoading) {
-    const content = Array.from({ length: 9 }).map((_, i) => <SmallCardSkeleton key={i} />);
+    const content = Array.from({ length: MAIN_PAGE_RECOMMENDAION_LIMIT }).map((_, i) => (
+      <SmallCardSkeleton key={i} />
+    ));
     return renderSection(content);
   }
 

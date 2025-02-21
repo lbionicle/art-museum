@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getArtworkDetail, isAxiosError } from '@/api/route';
 import stripHTML from '@/utils/stripHtml';
 import { FavButton } from '../Card';
 import { ArtDetailsSkeleton } from '../Skeletons';
+
+import defaultImage from '@/assets/images/default-art.svg';
 
 import './details.scss';
 
@@ -35,7 +37,10 @@ export default function ArtDetails() {
   if (isLoading) return <ArtDetailsSkeleton />;
   if (!data) return null;
 
-  const openModal = () => setIsModalOpen(true);
+  const openModal = (e: React.MouseEvent<HTMLImageElement>) => {
+    if (e.currentTarget.src === defaultImage) return;
+    setIsModalOpen(true);
+  };
   const closeModal = () => setIsModalOpen(false);
 
   return (
@@ -46,6 +51,10 @@ export default function ArtDetails() {
             <img
               src={data.image.src}
               alt={data.title}
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = defaultImage;
+              }}
               className="art-details__image-img"
               onClick={openModal}
             />
@@ -90,6 +99,10 @@ export default function ArtDetails() {
           <img
             src={data.image.src}
             alt={data.title}
+            onError={(e) => {
+              e.currentTarget.onerror = null;
+              e.currentTarget.src = defaultImage;
+            }}
             className="modal-image"
             onClick={(e) => e.stopPropagation()}
           />
