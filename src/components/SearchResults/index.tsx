@@ -32,7 +32,7 @@ export default function SearchResults() {
     return renderTable(content);
   }
   if (error) return <div className="container title title--text">Something went wrong!</div>;
-  if (!artworks.length)
+  if (!artworks.length && query.trim())
     return <div className="container title title--text not-found">No artworks found!</div>;
 
   return renderTable(artworks.map((artwork) => <SmallCard key={artwork.id} {...artwork} />));
