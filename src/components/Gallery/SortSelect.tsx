@@ -1,10 +1,4 @@
-type SortField = 'title' | 'date';
-type SortOrder = 'asc' | 'desc';
-
-export interface SortConfig {
-  field: SortField;
-  order: SortOrder;
-}
+import { SortConfig, SortField, SortOrder } from '@/types';
 
 interface SortSelectProps {
   value: SortConfig;

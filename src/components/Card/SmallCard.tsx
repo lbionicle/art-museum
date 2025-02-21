@@ -1,20 +1,10 @@
 import { Link } from 'react-router-dom';
 import FavButton from './FavButton';
+import { CardProps } from '@/types';
 
 import defaultImage from '@/assets/images/default-art.svg';
 
 import './card.scss';
-
-export interface CardProps {
-  id: number;
-  image: {
-    src: string;
-    alt: string;
-  };
-  title: string;
-  artist: string;
-  isPublic: boolean;
-}
 
 export default function SmallCard({ id, image, title, artist, isPublic }: CardProps) {
   return (
