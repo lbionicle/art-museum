@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { z } from 'zod';
 
 import {
@@ -9,6 +9,10 @@ import {
 } from './schema';
 import { _API_URL, IIIFParam } from '@/constants';
 import defaultImage from '@/assets/images/default-art.svg';
+
+export function isAxiosError(error: unknown): error is AxiosError {
+  return typeof error === 'object' && error !== null && 'isAxiosError' in error;
+}
 
 const transformArtworkData = (IIIFUrl: string, artwork: z.infer<typeof dataSchema>) => {
   const {
@@ -22,22 +26,26 @@ const transformArtworkData = (IIIFUrl: string, artwork: z.infer<typeof dataSchem
     dimensions,
     date_end,
     date_start,
+    artist_display,
+    on_loan_display,
+    date_display,
   } = artwork;
   return {
     id,
     title,
     artist: artist_title,
     isPublic: is_public_domain,
+    dateDisplay: date_display,
     dateStart: date_start,
     dateEnd: date_end,
     image: {
       src: image_id ? `${IIIFUrl}/${image_id}${IIIFParam}` : defaultImage,
       alt: thumbnail.alt_text ?? title,
     },
-    nacionality: '',
+    nationality: artist_display,
     dimensions,
     creditLine: credit_line,
-    repository: '',
+    repository: on_loan_display,
   };
 };
 
