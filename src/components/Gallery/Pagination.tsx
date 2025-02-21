@@ -1,3 +1,4 @@
+import { MAX_VISIBLE_BUTTONS } from '@/constants';
 import './gallery.scss';
 
 interface PaginationProps {
@@ -8,7 +9,7 @@ interface PaginationProps {
 }
 
 export default function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) {
-  const visiblePages = 4;
+  const visiblePages = MAX_VISIBLE_BUTTONS;
   let startPage = Math.max(1, currentPage - Math.floor(visiblePages / 2));
   let endPage = startPage + visiblePages - 1;
 

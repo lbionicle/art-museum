@@ -8,6 +8,7 @@ import { SmallCard } from '../Card';
 import Table from '../Table';
 
 import './favorite.scss';
+import { FAVORITE_PAGE_LIMIT } from '@/constants';
 
 type Artwork = NonNullable<Awaited<ReturnType<typeof getArtworkDetail>>>;
 
@@ -49,7 +50,9 @@ export default function ArtFav() {
 
   const isLoading = artworkQueries.some((query) => query.isLoading);
   if (isLoading) {
-    const content = Array.from({ length: 6 }).map((_, i) => <SmallCardSkeleton key={i} />);
+    const content = Array.from({ length: FAVORITE_PAGE_LIMIT }).map((_, i) => (
+      <SmallCardSkeleton key={i} />
+    ));
     return renderSection(content);
   }
 
