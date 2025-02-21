@@ -16,6 +16,7 @@
       height: 100%;
       object-fit: cover;
       object-position: center;
+      cursor: zoom-in;
     }
   }
 
@@ -25,7 +26,7 @@
     right: 1rem;
 
     .button--favorite:hover {
-      outline: 1px solid var(--accent-light-color);
+      background-color: white;
     }
   }
 
@@ -89,5 +90,54 @@
 
   &__status {
     margin: 1rem 0 0 0;
+  }
+
+  @media (max-width: 1023px) {
+    &__wrapper {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  cursor: pointer;
+
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-image {
+    max-width: 90%;
+    max-height: 90%;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    margin: auto;
+  }
+
+  .modal-close {
+    position: absolute;
+    background-color: transparent;
+    padding: 1rem;
+    font-weight: 200;
+    top: 20px;
+    right: 20px;
+    border: none;
+    font-size: 3rem;
+    color: white;
+    cursor: pointer;
   }
 }

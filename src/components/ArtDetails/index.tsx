@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getArtworkDetail, isAxiosError } from '@/api/route';
@@ -12,6 +12,7 @@ export default function ArtDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
   const artworkId = Number(id);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     if (!id || isNaN(artworkId)) {
@@ -32,15 +33,22 @@ export default function ArtDetails() {
   }, [error, navigate]);
 
   if (isLoading) return <ArtDetailsSkeleton />;
-
   if (!data) return null;
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   return (
     <section className="section--base art-details">
       <div className="container art-details__container">
         <div className="art-details__wrapper">
           <div className="art-details__image">
-            <img src={data.image.src} alt={data.title} className="art-details__image-img" />
+            <img
+              src={data.image.src}
+              alt={data.title}
+              className="art-details__image-img"
+              onClick={openModal}
+            />
             <div className="art-details__favorite">
               <FavButton id={artworkId} />
             </div>
@@ -76,6 +84,20 @@ export default function ArtDetails() {
           </div>
         </div>
       </div>
+
+      {isModalOpen && (
+        <div className="modal" onClick={closeModal}>
+          <img
+            src={data.image.src}
+            alt={data.title}
+            className="modal-image"
+            onClick={(e) => e.stopPropagation()}
+          />
+          <button className="modal-close" onClick={closeModal}>
+            &times;
+          </button>
+        </div>
+      )}
     </section>
   );
 }
