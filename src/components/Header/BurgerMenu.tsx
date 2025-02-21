@@ -19,7 +19,7 @@ export default function BurgerMenu({ onClose }: BurgerMenuProps) {
   useModal({ onClose: onClose });
 
   return (
-    <div className="burger-menu">
+    <div data-testid="burger-menu" className="burger-menu">
       <div className="burger-menu__overlay" onClick={onClose}></div>
       <div className="burger-menu__content">
         <button className="burger-menu__close" onClick={onClose} aria-label="Close menu">
