@@ -5,7 +5,7 @@ import { getArtworkDetail, isAxiosError } from '@/api/route';
 import stripHTML from '@/utils/stripHtml';
 import { FavButton } from '../Card';
 import { ArtDetailsSkeleton } from '../Skeletons';
-import useModal from '@/hooks/useModal';
+import LightBox from './LightBox';
 
 import defaultImage from '@/assets/images/default-art.svg';
 
@@ -16,8 +16,6 @@ export default function ArtDetails() {
   const navigate = useNavigate();
   const artworkId = Number(id);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  useModal({ onClose: () => setIsModalOpen(false) });
 
   useEffect(() => {
     if (!id || isNaN(artworkId)) {
@@ -97,23 +95,7 @@ export default function ArtDetails() {
         </div>
       </div>
 
-      {isModalOpen && (
-        <div className="modal" onClick={closeModal}>
-          <img
-            src={data.image.src}
-            alt={data.title}
-            onError={(e) => {
-              e.currentTarget.onerror = null;
-              e.currentTarget.src = defaultImage;
-            }}
-            className="modal-image"
-            onClick={(e) => e.stopPropagation()}
-          />
-          <button className="modal-close" onClick={closeModal}>
-            &times;
-          </button>
-        </div>
-      )}
+      {isModalOpen && <LightBox src={data.image.src} alt={data.image.alt} onClose={closeModal} />}
     </section>
   );
 }
